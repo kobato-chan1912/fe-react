@@ -22,12 +22,17 @@ export const restrictedRoutes: Readonly<Record<RestrictedRoute, IRoute>> = {
 type PublicRoute = string
 export const publicRoutes: Readonly<Record<PublicRoute, IRoute>> = {}
 
-export type ProtectedRoute = 'dashboard'
+export type ProtectedRoute = 'dashboard' | 'profile'
 
 export const protectedRoutes: Readonly<Record<ProtectedRoute, IRoute>> = {
   dashboard: {
     page: 'dashboard',
     exact: false,
     path: '/dashboard'
+  },
+  profile: {
+    page: 'profile',
+    exact: false,
+    path: '/profile'
   }
 }

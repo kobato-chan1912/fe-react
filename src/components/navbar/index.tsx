@@ -1,8 +1,10 @@
-import { Avatar, Menu } from 'antd';
+import { Avatar, Dropdown, Menu } from 'antd';
 import { FC, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { get } from '../../api';
 import { AuthContext } from '../../context';
+import { SwitchLanguage } from '../widget/swithLanguage';
 
 const Navbar: FC = () => {
   const [user, setUser] = useState("")
@@ -37,16 +39,26 @@ const Navbar: FC = () => {
     return name
   }
 
-  return (<Menu mode="horizontal">
-    <Menu.SubMenu style={{ float: 'right' }} title={
-      <Avatar style={{ verticalAlign: 'middle' }} size="large">
-        {getAvaName(user)}
-      </Avatar>
-    }>
-      <Menu.Item onClick={logout}>
-        logout
+  const menu = (<Menu mode="vertical">
+    <Menu.Item>
+      <UserOutlined />
+      profile
     </Menu.Item>
-    </Menu.SubMenu>
+    <Menu.Item onClick={logout}>
+      <LogoutOutlined />
+      logout
+    </Menu.Item>
+  </Menu>)
+
+  return (<Menu mode="horizontal">
+    <div style={{ float: 'right', margin: '0px 12px', cursor: 'pointer' }}>
+      <Dropdown overlay={menu} placement="bottomRight" arrow>
+        <Avatar style={{ verticalAlign: 'middle' }} size="large">
+          {getAvaName(user)}
+        </Avatar>
+      </Dropdown>
+    </div>
+    <SwitchLanguage style={{ float: 'right' }} />
   </Menu>)
 }
 

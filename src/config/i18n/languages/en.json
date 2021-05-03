@@ -1,0 +1,6 @@
+{
+  "loginPage": {
+    "btnLogin": "login",
+    "forgotPassword": "forgot password"
+  }
+}
